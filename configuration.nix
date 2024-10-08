@@ -122,9 +122,6 @@
     vim
     nvim-pkg
 
-    # Terminal emulator
-    blackbox-terminal
-
     # Utilities
     wget
     curl
