@@ -107,7 +107,6 @@
     };
   };
 
-
   # Install firefox.
   programs.firefox.enable = true;
 
@@ -129,6 +128,7 @@
     # Utilities
     wget
     curl
+    cloudflared
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
