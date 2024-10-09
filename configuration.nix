@@ -50,6 +50,10 @@
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
+   # Enable virtualbox. Ref <https://nixos.wiki/wiki/Virtualbox>
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "robin" ];
+
   # experimental features
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
