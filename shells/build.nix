@@ -5,7 +5,6 @@ in with pkgs; mkShell {
     gcc
     glibc
     binutils
-    make
     gnumake
     coreutils
     findutils

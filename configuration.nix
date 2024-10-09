@@ -124,7 +124,14 @@
   environment.systemPackages = with pkgs; [
     # Text editor
     vim
-    nvim-pkg
+    (nvim-pkg.override {
+      vimAlias = true;  # Optional alias for vim
+      withPython = true;
+      withNodeJs = true;
+      withRacket = false;
+      withRuby = false;
+      luaPackages = [ luaPackages.luarocks ]; # Add LuaRocks
+    })
 
     # Utilities
     wget
