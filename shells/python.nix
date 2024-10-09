@@ -12,7 +12,6 @@ in with pkgs; mkShell {
     pythonPackages.pydantic
     pythonPackages.venvShellHook
     uv
-    make
   ];
 
   buildInputs = [
