@@ -172,7 +172,13 @@
     options = "--delete-older-than 7d";
   };
 
-  boot.kernelParams = [ "mem_sleep_default=deep" ];
+  nix.optimise.automatic = true;
+  nix.optimise.dates = [ "03:45" ]; # Optional; allows customizing optimisation schedule
+
+  # Battery optimizations
+  # TODO: Check for improvement
+  services.power-profiles-daemon.enable = false;
+  services.tlp.enable = true;
 
   systemd.sleep.extraConfig = ''
     AllowSuspend=yes
