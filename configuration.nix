@@ -130,6 +130,7 @@
     wget
     curl
     cloudflared
+    ciscoPacketTracer8
 
     # Compatibility
     wineWowPackages.stable
