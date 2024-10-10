@@ -130,6 +130,9 @@
     wget
     curl
     cloudflared
+
+    # Compatibility
+    wineWowPackages.stable
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -186,4 +189,8 @@
     AllowHybridSleep=no
     AllowSuspendThenHibernate=no
   '';
+
+  # Games
+  programs.steam.enable = true;
+
 }
