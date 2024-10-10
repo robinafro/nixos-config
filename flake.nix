@@ -1,21 +1,27 @@
 {
-  description = "A very basic flake";
+  description = "nixos config";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.05";
-    nixvim.url = "github:robinafro/nixvim";
+
+    home-manager = {
+      url = "github:nix-community/home-manager?ref=release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixvim }: {
-    nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
-      modules =
-        [
-          ({ pkgs, ... }: {
-            
-            nixpkgs.overlays = [ nixvim.overlays.default ];
-          })
-          ./configuration.nix
-        ];
+  outputs = { self, nixpkgs, ...}@inputs:
+  let
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+  in
+  {
+    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+      specialArgs = { inherit inputs; };
+      modules = [
+        ./configuration.nix
+        inputs.home-manager.nixosModules.default
+      ];
     };
   };
 }
