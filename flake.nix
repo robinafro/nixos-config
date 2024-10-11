@@ -1,3 +1,5 @@
+# flake.nix
+
 {
   description = "nixos config";
 
@@ -8,6 +10,8 @@
       url = "github:nix-community/home-manager?ref=release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixvim.url = "github:robinafro/nixvim";
   };
 
   outputs = { self, nixpkgs, ...}@inputs:
