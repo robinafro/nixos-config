@@ -11,6 +11,8 @@
   home.packages = [
     inputs.nixvim.packages.${pkgs.system}.default  # Use the default package from your nixvim flake
 		(pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+
+		pkgs.devenv
   ];
 
   programs.home-manager.enable = true;
