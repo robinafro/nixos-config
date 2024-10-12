@@ -99,6 +99,10 @@
     ];
   };
 
+	nix.extraOptions = ''
+        trusted-users = root robin
+    '';
+
   # Home manager
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
