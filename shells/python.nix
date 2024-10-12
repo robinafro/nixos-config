@@ -11,6 +11,7 @@ in with pkgs; mkShell {
   packages = [
     pythonPackages.pydantic
     pythonPackages.venvShellHook
+		pythonPackages.pip
     uv
   ];
 
