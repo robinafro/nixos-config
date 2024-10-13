@@ -13,6 +13,8 @@
       inputs.home-manager.nixosModules.default
     ];
 
+	nixpkgs.config.allowUnfree = true;
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -128,10 +130,6 @@
 
   # Install firefox.
   programs.firefox.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

@@ -3,6 +3,8 @@
 { config, pkgs, inputs, ... }:
 
 {
+	nixpkgs.config.allowUnfree = true;
+
   home.username = "robin";
   home.homeDirectory = "/home/robin";
   home.stateVersion = "24.05";

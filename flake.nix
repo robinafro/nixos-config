@@ -1,5 +1,3 @@
-# flake.nix
-
 {
   description = "nixos config";
 
@@ -14,13 +12,15 @@
     nixvim.url = "github:robinafro/nixvim";
   };
 
-  outputs = { self, nixpkgs, ...}@inputs:
+  outputs = { self, nixpkgs, ... }@inputs:
   let
     system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
   in
   {
+		nixpkgs.config.allowUnfree = true;
+
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+      system = system;
       specialArgs = { inherit inputs; };
       modules = [
         ./configuration.nix
