@@ -28,6 +28,5 @@ in with pkgs; mkShell {
     SOURCE_DATE_EPOCH=$(date +%s)
     export "LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${lib-path}"
     export PYTHONPATH=`pwd`/$VENV/${python.sitePackages}/:$PYTHONPATH
-    pip install -r requirements.txt
   '';
 }
