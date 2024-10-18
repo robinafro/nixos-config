@@ -59,6 +59,10 @@
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "robin" ];
 
+	# Enable Docker
+	virtualisation.docker.enable = true;
+	users.extraGroups.docker.members = [ "robin" ];
+
   # experimental features
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
