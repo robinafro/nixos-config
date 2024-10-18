@@ -15,6 +15,7 @@
 		(pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
 
 		pkgs.devenv
+		pkgs.prusa-slicer
   ];
 
   programs.home-manager.enable = true;
