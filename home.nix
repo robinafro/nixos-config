@@ -16,6 +16,9 @@
 
 		pkgs.devenv
 		pkgs.prusa-slicer
+		pkgs.rpi-imager
+		pkgs.gparted
+		pkgs.beeper
   ];
 
   programs.home-manager.enable = true;

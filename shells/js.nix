@@ -3,6 +3,7 @@ let
 in with pkgs; mkShell {
   packages = with pkgs; [
     nodejs
+    deno
     pnpm
   ];
 

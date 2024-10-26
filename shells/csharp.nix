@@ -2,7 +2,7 @@ let
   pkgs = import <nixpkgs> {};
 in with pkgs; mkShell {
   packages = with pkgs; [
-    dotnet-sdk
+    dotnet-sdk_8
     mono5
   ];
 
