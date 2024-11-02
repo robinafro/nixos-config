@@ -109,11 +109,12 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
-      kdePackages.partitionmanager
+      # kdePackages.partitionmanager
       kdePackages.filelight
       kdePackages.kcalc
     ];
   };
+  programs.partition-manager.enable = true;
 
   nix.extraOptions = ''
     trusted-users = root robin
