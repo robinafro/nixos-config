@@ -7,19 +7,21 @@
 { config, pkgs, inputs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.default
+  ];
 
-	nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-	boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = [ "ntfs" ];
+
+  # Kernel
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_6;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -54,16 +56,19 @@
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+  };
   services.desktopManager.plasma6.enable = true;
 
-   # Enable virtualbox. Ref <https://nixos.wiki/wiki/Virtualbox>
+  # Enable virtualbox. Ref <https://nixos.wiki/wiki/Virtualbox>
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "robin" ];
 
-	# Enable Docker
-	virtualisation.docker.enable = true;
-	users.extraGroups.docker.members = [ "robin" ];
+  # Enable Docker
+  virtualisation.docker.enable = true;
+  users.extraGroups.docker.members = [ "robin" ];
 
   # experimental features
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -101,22 +106,21 @@
     isNormalUser = true;
     description = "robin";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      kdePackages.kate
-    #  thunderbird
-    ];
+    packages = with pkgs;
+      [
+        kdePackages.kate
+        #  thunderbird
+      ];
   };
 
-	nix.extraOptions = ''
-        trusted-users = root robin
-    '';
+  nix.extraOptions = ''
+    trusted-users = root robin
+  '';
 
   # Home manager
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
-    users = {
-      "robin" = import ./home.nix;
-    };
+    users = { "robin" = import ./home.nix; };
   };
 
   # Git
@@ -126,12 +130,8 @@
       name = "robinafro";
       email = "oble.ro.2023@skola.ssps.cz";
     };
-    credential = {
-      helper = "store";
-    };
-    init = {
-      defaultBranch = "main";
-    };
+    credential = { helper = "store"; };
+    init = { defaultBranch = "main"; };
   };
 
   # Install firefox.
@@ -182,9 +182,14 @@
   system.stateVersion = "24.05"; # Did you read the comment?
 
   hardware.bluetooth.enable = true; # enables support for Bluetooth
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  hardware.bluetooth.powerOnBoot =
+    true; # powers up the default Bluetooth controller on boot
   services.blueman.enable = true;
 
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-kde ];
+  };
   services.flatpak.enable = true;
 
   # Automatic Garbage Collection
@@ -195,7 +200,8 @@
   };
 
   nix.optimise.automatic = true;
-  nix.optimise.dates = [ "03:45" ]; # Optional; allows customizing optimisation schedule
+  nix.optimise.dates =
+    [ "03:45" ]; # Optional; allows customizing optimisation schedule
 
   # Battery optimizations
   # TODO: Check for improvement
