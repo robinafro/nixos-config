@@ -110,7 +110,8 @@
     packages = with pkgs; [
       kdePackages.kate
       kdePackages.partitionmanager
-      #  thunderbird
+      kdePackages.filelight
+      kdePackages.kcalc
     ];
   };
 
