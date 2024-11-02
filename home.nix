@@ -37,7 +37,7 @@
 
 		pkgs.stylua
 		pkgs.nixfmt-classic
-		pkgs.prettier
+		pkgs.prettierd
 		pkgs.eslint
 
 		pkgs.deno
