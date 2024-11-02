@@ -19,6 +19,24 @@
 		pkgs.rpi-imager
 		pkgs.gparted
 		pkgs.beeper
+
+		pkgs.wl-clipboard
+		pkgs.rsync
+		pkgs.zip
+		pkgs.unzip
+		pkgs.tree
+		pkgs.jq
+
+		pkgs.python312
+		pkgs.python312Packages.pydantic
+		pkgs.python312Packages.venvShellHook
+		pkgs.uv
+		pkgs.isort
+		pkgs.black
+		pkgs.ruff
+
+		pkgs.deno
+		pkgs.pnpm
   ];
 
   programs.home-manager.enable = true;
