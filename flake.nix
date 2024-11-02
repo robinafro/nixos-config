@@ -13,19 +13,16 @@
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
-  let
-    system = "x86_64-linux";
-  in
-  {
-		nixpkgs.config.allowUnfree = true;
+    let system = "x86_64-linux";
+    in {
+      nixpkgs.config.allowUnfree = true;
+      nixpkgs.config.permittedInsecurePackages = [ "electron-27.3.11" ];
 
-    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-      system = system;
-      specialArgs = { inherit inputs; };
-      modules = [
-        ./configuration.nix
-        inputs.home-manager.nixosModules.default
-      ];
+      nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+        system = system;
+        specialArgs = { inherit inputs; };
+        modules =
+          [ ./configuration.nix inputs.home-manager.nixosModules.default ];
+      };
     };
-  };
 }
