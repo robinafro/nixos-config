@@ -35,6 +35,11 @@
 		pkgs.black
 		pkgs.ruff
 
+		pkgs.stylua
+		pkgs.nixfmt-classic
+		pkgs.prettier
+		pkgs.eslint
+
 		pkgs.deno
 		pkgs.pnpm
   ];
