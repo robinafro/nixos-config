@@ -106,11 +106,11 @@
     isNormalUser = true;
     description = "robin";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs;
-      [
-        kdePackages.kate
-        #  thunderbird
-      ];
+    packages = with pkgs; [
+      kdePackages.kate
+      kdePackages.partitionmanager
+      #  thunderbird
+    ];
   };
 
   nix.extraOptions = ''

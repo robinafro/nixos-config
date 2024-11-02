@@ -3,45 +3,63 @@
 { config, pkgs, inputs, ... }:
 
 {
-	nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = true;
 
   home.username = "robin";
   home.homeDirectory = "/home/robin";
   home.stateVersion = "24.05";
 
-	fonts.fontconfig.enable = true;
+  fonts.fontconfig.enable = true;
   home.packages = [
-    inputs.nixvim.packages.${pkgs.system}.default  # Use the default package from your nixvim flake
-		(pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+    inputs.nixvim.packages.${pkgs.system}.default # Use the default package from your nixvim flake
+    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
 
-		pkgs.devenv
-		pkgs.prusa-slicer
-		pkgs.rpi-imager
-		pkgs.gparted
-		pkgs.beeper
+    # Apps
+    pkgs.blender
+    pkgs.gimp
+    pkgs.inkscape
+    pkgs.itch
+    pkgs.keepassxc
+    pkgs.libreoffice-qt6
+    pkgs.logseq
+    pkgs.rnote
+    pkgs.slack
+    pkgs.vlc
+    pkgs.webcord-vencord
+    pkgs.vscodium
 
-		pkgs.wl-clipboard
-		pkgs.rsync
-		pkgs.zip
-		pkgs.unzip
-		pkgs.tree
-		pkgs.jq
+    # Misc apps
+    pkgs.prusa-slicer
+    pkgs.rpi-imager
+    pkgs.beeper
 
-		pkgs.python312
-		pkgs.python312Packages.pydantic
-		pkgs.python312Packages.venvShellHook
-		pkgs.uv
-		pkgs.isort
-		pkgs.black
-		pkgs.ruff
+    # Utils
+    pkgs.wl-clipboard
+    pkgs.rsync
+    pkgs.zip
+    pkgs.unzip
+    pkgs.tree
+    pkgs.jq
+    pkgs.btop
+    pkgs.parted
 
-		pkgs.stylua
-		pkgs.nixfmt-classic
-		pkgs.prettierd
-		pkgs.eslint
+    # Dev
+    pkgs.devenv
+    pkgs.python312
+    pkgs.python312Packages.pydantic
+    pkgs.python312Packages.venvShellHook
+    pkgs.uv
+    pkgs.isort
+    pkgs.black
+    pkgs.ruff
 
-		pkgs.deno
-		pkgs.pnpm
+    pkgs.stylua
+    pkgs.nixfmt-classic
+    pkgs.prettierd
+    pkgs.eslint
+
+    pkgs.deno
+    pkgs.pnpm
   ];
 
   programs.home-manager.enable = true;
