@@ -18,6 +18,8 @@
     # Apps
     pkgs.blender
     pkgs.gimp
+    pkgs.krita
+    pkgs.kdenlive
     pkgs.inkscape
     pkgs.itch
     pkgs.keepassxc
@@ -28,6 +30,7 @@
     pkgs.vlc
     pkgs.webcord-vencord
     pkgs.vscodium
+    pkgs.obs-studio
 
     # Misc apps
     pkgs.prusa-slicer
