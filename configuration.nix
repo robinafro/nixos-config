@@ -19,8 +19,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.supportedFilesystems = [ "ntfs" ];
-
   # Kernel
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_6;
 
@@ -116,6 +114,12 @@
   };
   programs.partition-manager.enable = true;
 
+  # Shell
+  programs.zsh.enable = true;
+  programs.zsh.ohMyZsh.enable = true;
+  programs.zsh.ohMyZsh.theme = "jnrowe";
+  users.users.robin.shell = pkgs.zsh;
+
   nix.extraOptions = ''
     trusted-users = root robin
   '';
@@ -155,6 +159,9 @@
 
     # Compatibility
     wineWowPackages.stable
+
+    # Wireguard
+    wireguard-tools
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -221,4 +228,7 @@
   # Games
   programs.steam.enable = true;
 
+  # Wireguard (SOBECO)
+  services.resolved.enable = true;
+  security.audit.enable = true;
 }
