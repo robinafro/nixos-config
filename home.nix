@@ -64,7 +64,22 @@
 
     pkgs.deno
     pkgs.pnpm
+    pkgs.tailwindcss
+
+    pkgs.arduino
+    pkgs.arduino-cli
   ];
+
+  programs.zsh = {
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+
+    history = {
+      size = 10000;
+      path = "${config.xdg.dataHome}/zsh/history";
+    };
+  };
 
   programs.home-manager.enable = true;
 }
